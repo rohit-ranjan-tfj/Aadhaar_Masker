@@ -9,11 +9,11 @@ Implementation of a complete pipeline that masks the Aadhaar Number in given ima
 ### Versions
 The search for the best masking pipeline led us to experiment with several different approaches. We have documented our experiments in other branches.
 
-| Branch(->model)        | Speed/Performance | Pipeline                       |
-| ---------------------- |:-------------    :| -----                         :|
+| Branch(->model)        | Speed/Performance | Pipeline                                     |
+| ---------------------- |:-----------------:|:--------------------------------------------:|
 | main                   | Best performing   | CRAFT + pytesseract + dimensional heuristics |
-| CNN_OCR->cnn_model     | Fastest masking   | CRAFT + LeNet trained by us    |
-| CNN_OCR->cnn_model_2   | Fastest masking   | CRAFT + LeNet trained by us    |
+| CNN_OCR->cnn_model     | Fastest masking   | CRAFT + LeNet trained by us                  |
+| CNN_OCR->cnn_model_2   | Fastest masking   | CRAFT + LeNet trained by us                  |
 #### Datasets
 Lenet was trained on our self-created labelled [dataset](https://drive.google.com/file/d/1ieFufNXsWNQL7QeetWPo8Pe36ivhirA7/view?usp=sharing) | [labels](https://drive.google.com/file/d/1oEQPeS-RMctHZFOrI3kGrT7T0zHc2Lq9/view?usp=sharing).
 
