@@ -19,7 +19,7 @@ pip install -r requirements.txt
 ```
 
 ### Test instruction using pretrained model
-* clone this repository and 
+* Clone this repository 
 ```
 git clone https://github.com/thefurorjuror/Aadhaar_Masker.git
 ```
@@ -30,7 +30,7 @@ python [folder path to the cloned repo]/masker.py --test_folder=[folder path to 
 python masker.py --test_folder=./images/ --output-folder=./output/ --cuda=True
 ```
 
-Cuda is set to False by default.
+cuda is set to False by default.
 
 
 ## Citation
