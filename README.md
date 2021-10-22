@@ -15,6 +15,10 @@ The search for the best masking pipeline led us to experiment with several diffe
 | main                   | Best performing   | CRAFT + pytesseract + dimensional heuristics |
 | CNN_OCR->cnn_model     | Fastest masking   | CRAFT + LeNet trained by us                  |
 | CNN_OCR->cnn_model_2   | Fastest masking   | CRAFT + LeNet trained by us                  |
+| UNET_OCDR  | Theoretically Fastest but trained model unavailable**    | UNet                   |
+
+\*\*We proposed and implemented a pipeline which uses a single UNet model for achieving a desirable mask. A single model would have made the inference very fast and real time use capable on mobile devices. 
+Training meant creating a dataset since the company could not legally provide us the needed data. After several trials, we halted work on this model because with barely 150 unique datapoints available, a data hungry UNet Model is simply unsatiable for now.
 #### Datasets
 Lenet was trained on our self-created labelled [dataset](https://drive.google.com/file/d/1ieFufNXsWNQL7QeetWPo8Pe36ivhirA7/view?usp=sharing) | [labels](https://drive.google.com/file/d/1oEQPeS-RMctHZFOrI3kGrT7T0zHc2Lq9/view?usp=sharing).
 
