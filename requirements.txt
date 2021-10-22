@@ -1,0 +1,16 @@
+torch
+torchvision==0.2.1
+opencv-python
+scikit-image
+scipy
+matplotlib
+numpy
+cv2
+pandas
+pathlib
+os
+re
+argparse
+pytesseract
+tqdm
+tesseract-ocr
