@@ -25,9 +25,9 @@ git clone https://github.com/thefurorjuror/Aadhaar_Masker.git
 ```
 * Run on an image folder
 ``` (with python 3.7)
-python [folder path to the cloned repo]/test.py --test_folder=[folder path to test images] --output-folder=[folder path to output images] --cuda=[True/False]
+python [folder path to the cloned repo]/masker.py --test_folder=[folder path to test images] --output-folder=[folder path to output images] --cuda=[True/False]
 #Example- When one is inside the cloned repo
-python test.py --test_folder=./images/ --output-folder=./output/ --cuda=True
+python masker.py --test_folder=./images/ --output-folder=./output/ --cuda=True
 ```
 
 Cuda is set to False by default.
