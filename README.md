@@ -18,7 +18,7 @@ Implementation of a complete pipeline that masks the Aadhaar Number in given ima
 pip install -r requirements.txt
 ```
 
-### Test instruction using pretrained model
+### Test instructions
 * Clone this repository 
 ```
 git clone https://github.com/thefurorjuror/Aadhaar_Masker.git
