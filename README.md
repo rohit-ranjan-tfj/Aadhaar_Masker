@@ -10,9 +10,9 @@ Implementation of a complete pipeline that masks the Aadhaar Number in given ima
 ## Getting started
 ### Install dependencies
 #### Requirements
--torch
--opencv-python
--tesseract-ocr
+- torch
+- opencv-python
+- tesseract-ocr
 - check requirements.txt
 ```
 pip install -r requirements.txt
@@ -28,7 +28,6 @@ git clone https://github.com/thefurorjuror/Aadhaar_Masker.git
 python [folder path to the cloned repo]/test.py --test_folder=[folder path to test images] --output-folder=[folder path to output images] --cuda=[True/False]
 #Example- When one is inside the cloned repo
 python test.py --test_folder=./images/ --output-folder=./output/ --cuda=True
-
 ```
 
 Cuda is set to False by default.
