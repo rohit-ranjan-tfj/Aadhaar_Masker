@@ -1,5 +1,5 @@
 torch
-torchvision==0.2.1
+torchvision
 opencv-python
 scikit-image
 scipy
@@ -7,8 +7,6 @@ matplotlib
 numpy
 pandas
 pathlib
-os
-re
 argparse
 pytesseract
 tqdm
