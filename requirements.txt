@@ -5,7 +5,6 @@ scikit-image
 scipy
 matplotlib
 numpy
-cv2
 pandas
 pathlib
 os
