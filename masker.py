@@ -52,12 +52,18 @@ if __name__ == '__main__':
   for IMAGE_PATH in pbar:
     num_list = []
     image = cv2.imread(IMAGE_PATH)
-    height = image.shape[0]
-    width = image.shape[1]
+    try:
+      height = image.shape[0]
+      width = image.shape[1]
+    except:
+      continue
     with open("./result/res_" + IMAGE_PATH[path_length:-4]+".txt", "r") as filestream:
         for line in filestream:
             currentline = line.split(",")
-            a,b,c,d,e,f,g,h=currentline
+            try:
+              a,b,c,d,e,f,g,h=currentline
+            except:
+              continue
             a,b,c,d,e,f,g,h=int(a),int(b),int(c),int(d),int(e),int(f),int(g),int(h)
 
             mask = np.zeros((height, width), dtype=np.uint8)
