@@ -39,6 +39,8 @@ if __name__ == '__main__':
   path_length=len(args.test_folder)
   if (args.test_folder[-1]!='/'):
     path_length=path_length+1
+  if (args.output_folder[-1]!='/'):
+    args.output_folder=args.output_folder+"/"    
   paths=[]
   for dirname, _, filenames in os.walk(args.test_folder):
     for filename in filenames:
@@ -92,5 +94,5 @@ if __name__ == '__main__':
     for (a,b,c,d,e,f,g,h) in num_list:
       points = np.array([[[a,b],[c,d],[e,f],[g,h]]])
       cv2.fillPoly(image, points, (0,0,0))
-    cv2.imwrite(args.output_folder+"/masked_"+IMAGE_PATH[path_length:],image)
+    cv2.imwrite(args.output_folder+"masked_"+IMAGE_PATH[path_length:],image)
   print("Task completed successfully!")

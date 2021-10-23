@@ -31,6 +31,8 @@ Lenet was trained on our self-created labelled [dataset](https://drive.google.co
 - check requirements.txt
 ```
 pip install -r requirements.txt
+#or on bash systems
+#bash requirements.sh
 ```
 
 ### Test instructions
