@@ -89,7 +89,7 @@ if __name__ == '__main__':
               num_list.append((a,b,c,d,e,f,g,h))
             elif (replace_chars(string)!= ""):
               string=string.strip()
-              if (len(string)>=4 and len(string)<=12):
+              if (len(string)%4==0 and len(string)>=1):
                 num_list.append((a,b,c,d,e,f,g,h))
     for (a,b,c,d,e,f,g,h) in num_list:
       points = np.array([[[a,b],[c,d],[e,f],[g,h]]])
