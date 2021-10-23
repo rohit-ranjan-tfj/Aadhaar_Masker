@@ -57,7 +57,10 @@ if __name__ == '__main__':
     with open("./result/res_" + IMAGE_PATH[path_length:-4]+".txt", "r") as filestream:
         for line in filestream:
             currentline = line.split(",")
-            a,b,c,d,e,f,g,h=currentline
+            try:
+                a,b,c,d,e,f,g,h=currentline
+            except:
+                continue
             a,b,c,d,e,f,g,h=int(a),int(b),int(c),int(d),int(e),int(f),int(g),int(h)
 
             mask = np.zeros((height, width), dtype=np.uint8)
@@ -81,9 +84,10 @@ if __name__ == '__main__':
               num_list.append((a,b,c,d,e,f,g,h))
             elif (replace_chars(string)!= ""):
               string=string.strip()
-              if (len(string)==4 or len(string)==12):
+              if (len(string)>=4 and len(string)<=12):
                 num_list.append((a,b,c,d,e,f,g,h))
     for (a,b,c,d,e,f,g,h) in num_list:
       points = np.array([[[a,b],[c,d],[e,f],[g,h]]])
       cv2.fillPoly(image, points, (0,0,0))
     cv2.imwrite(args.output_folder+"/masked_"+IMAGE_PATH[path_length:],image)
+  print("Task successfully completed!")
