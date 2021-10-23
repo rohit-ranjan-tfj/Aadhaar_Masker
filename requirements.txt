@@ -12,4 +12,4 @@ re
 argparse
 pytesseract
 tqdm
-tesseract-ocr
+sklearn
