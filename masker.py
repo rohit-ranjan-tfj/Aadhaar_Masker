@@ -52,15 +52,18 @@ if __name__ == '__main__':
   for IMAGE_PATH in pbar:
     num_list = []
     image = cv2.imread(IMAGE_PATH)
-    height = image.shape[0]
-    width = image.shape[1]
+    try:
+      height = image.shape[0]
+      width = image.shape[1]
+    except:
+      continue
     with open("./result/res_" + IMAGE_PATH[path_length:-4]+".txt", "r") as filestream:
         for line in filestream:
             currentline = line.split(",")
             try:
-                a,b,c,d,e,f,g,h=currentline
+              a,b,c,d,e,f,g,h=currentline
             except:
-                continue
+              continue
             a,b,c,d,e,f,g,h=int(a),int(b),int(c),int(d),int(e),int(f),int(g),int(h)
 
             mask = np.zeros((height, width), dtype=np.uint8)
@@ -90,4 +93,4 @@ if __name__ == '__main__':
       points = np.array([[[a,b],[c,d],[e,f],[g,h]]])
       cv2.fillPoly(image, points, (0,0,0))
     cv2.imwrite(args.output_folder+"/masked_"+IMAGE_PATH[path_length:],image)
-  print("Task successfully completed!")
+  print("Task completed successfully!")
