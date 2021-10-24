@@ -53,6 +53,7 @@ if __name__ == '__main__':
   pbar = tqdm(paths)
   for IMAGE_PATH in pbar:
     num_list = []
+    area_list = []
     image = cv2.imread(IMAGE_PATH)
     try:
       height = image.shape[0]
@@ -68,30 +69,43 @@ if __name__ == '__main__':
               continue
             a,b,c,d,e,f,g,h=int(a),int(b),int(c),int(d),int(e),int(f),int(g),int(h)
 
-            mask = np.zeros((height, width), dtype=np.uint8)
-            points = np.array([[[a,b],[c,d],[e,f],[g,h]]])
-            cv2.fillPoly(mask, points, (255))
-
-            res = cv2.bitwise_and(image,image,mask = mask)
-
-            rect = cv2.boundingRect(points) # returns (x,y,w,h) of the rect
-            crop_image = res[rect[1]: rect[1] + rect[3], rect[0]: rect[0] + rect[2]]
-            try:
-              crop_image= cv2.cvtColor(crop_image, cv2.COLOR_BGR2GRAY)
-            except:
-              continue
-            string = pytesseract.image_to_string(crop_image,lang='eng',config='--psm 6')
-
             x=2.15
             y=2.65
- 
-            if (((dist(a,b,c,d)/dist(c,d,e,f)>=1/y) and (dist(a,b,c,d)/dist(c,d,e,f)<=1/x)) ):        
+            aspect=0.0
+
+            if dist(a,b,c,d)<dist(c,d,e,f) :
+              aspect=dist(a,b,c,d)/dist(c,d,e,f)
+            else:
+              aspect=dist(c,d,e,f)/dist(a,b,c,d)
+              
+            if (((aspect>=1/y) and (aspect<=1/x)) ):        
               num_list.append((a,b,c,d,e,f,g,h))
-            elif (replace_chars(string)!= ""):
-              string=string.strip()
-              if (len(string)%4==0 and len(string)>=1):
-                num_list.append((a,b,c,d,e,f,g,h))
-    for (a,b,c,d,e,f,g,h) in num_list:
+              calc = ( 0.5 * (a*d - c*b + c*f - e*d + e*h - g*f + g*b - a*h) )
+              area_list.append(calc)
+            else :
+              mask = np.zeros((height, width), dtype=np.uint8)
+              points = np.array([[[a,b],[c,d],[e,f],[g,h]]])
+              cv2.fillPoly(mask, points, (255))
+
+              res = cv2.bitwise_and(image,image,mask = mask)
+
+              rect = cv2.boundingRect(points) # returns (x,y,w,h) of the rect
+              crop_image = res[rect[1]: rect[1] + rect[3], rect[0]: rect[0] + rect[2]]
+              string = pytesseract.image_to_string(crop_image,lang='eng',config='--oem 3 --psm 6')
+              if (replace_chars(string)!= ""):
+                string=string.strip()
+                if (len(string)==4 or len(string)==8):
+                  calc = ( 0.5 * (a*d - c*b + c*f - e*d + e*h - g*f + g*b - a*h) )
+                  area_list.append(calc)
+                  num_list.append((a,b,c,d,e,f,g,h))
+                                  
+    mean = np.mean(area_list)
+    std = np.std(area_list)
+    for i in range(len(num_list)):
+      (a,b,c,d,e,f,g,h) = num_list[i]
+      area = area_list[i]
+      if len(num_list)>3 and (((area-mean)/std)>2 or ((area-mean)/std)<-1):
+        continue
       points = np.array([[[a,b],[c,d],[e,f],[g,h]]])
       cv2.fillPoly(image, points, (0,0,0))
     cv2.imwrite(args.output_folder+"masked_"+IMAGE_PATH[path_length:],image)
