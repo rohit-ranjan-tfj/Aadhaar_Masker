@@ -11,3 +11,6 @@ argparse
 pytesseract
 tqdm
 sklearn
+regex
+shutil
+pdf2image
