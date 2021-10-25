@@ -128,6 +128,7 @@ if __name__ == '__main__':
   temp_path_length=len("temp/")
   if (args.test_folder[-1]!='/'):
     path_length=path_length+1
+    args.test_folder=args.test_folder+"/"
   if (args.output_folder[-1]!='/'):
     args.output_folder=args.output_folder+"/"    
     
@@ -205,7 +206,7 @@ if __name__ == '__main__':
                                   
     mean = np.mean(area_list)
     std = np.std(area_list)
-    actual_image=cv2.imread("temp/"+IMAGE_PATH[temp_path_length:])
+    actual_image=cv2.imread(args.test_folder+IMAGE_PATH[temp_path_length:])
     for i in range(len(num_list)):
       (a,b,c,d,e,f,g,h) = num_list[i]
       area = area_list[i]
