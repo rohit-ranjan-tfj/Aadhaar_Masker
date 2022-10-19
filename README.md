@@ -7,7 +7,7 @@ Implementation of a complete pipeline that masks the Aadhaar Number in given ima
 
 <img width="1000" alt="teaser" src="./figures/example.gif">
 
-### Versions
+### Versions 
 The search for the best masking pipeline led us to experiment with several different approaches. We have documented our experiments in other branches.
 
 | Branch(->model)        | Speed/Performance | Pipeline                                     |
